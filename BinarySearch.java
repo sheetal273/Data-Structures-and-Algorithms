@@ -13,24 +13,25 @@ public static void main(String[] args) {
 			arr.add(scanner.nextInt());
 		}
 		
+		
+		System.out.println("Search element : " );
+		int element = scanner.nextInt();
+		
 		int mid, l, r;
 
-		mid = arr.size()/2;
+		mid = arr.size()/2; //7
 		l = 0;
 		r = arr.size() - 1;
-		int el;
-		System.out.println("Search element : " );
-		el = scanner.nextInt();
 		
 		while(l <= r) {
 			
-			System.out.println("l, r and mid : " + l + " "+ r + " "+ mid);
-			if(arr.get(mid) == el) {
+			
+			if(arr.get(mid) == element) {
 				System.out.println("Found element at : " + mid);
 				break;
 			}
 			
-			if(el > arr.get(mid)) {
+			if(element > arr.get(mid)) {
 				l = mid + 1;
 			}
 			else {
