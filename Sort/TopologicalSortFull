@@ -1,0 +1,92 @@
+
+import java.util.*;
+public class TopologicalSort {
+
+	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner(System.in);
+		int T = scanner.nextInt();
+		
+	
+		
+		while(T > 0) {
+		
+			int E = scanner.nextInt();
+			int V = scanner.nextInt();
+			
+			Graph g = new Graph(V);  
+			
+			for(int i=0;i<E;i++) {
+				g.addEdge(scanner.nextInt(), scanner.nextInt());
+			}
+			
+	   /*     g.addEdge(5, 2);  
+	        g.addEdge(5, 0);  
+	        g.addEdge(4, 0);  
+	        g.addEdge(4, 1);  
+	        g.addEdge(2, 3);  
+	        g.addEdge(3, 1);  
+	    
+	    */
+			
+	        System.out.println( "Following is a Topological sort of the given graph");  
+	        g.topologicalSort();
+	        
+	        T--;
+		}		
+	}
+}
+
+class Graph{
+	
+	// Number of vertices
+	int V;
+	ArrayList<ArrayList<Integer>> list;
+	
+	Graph(int V){
+		
+		list = new ArrayList<ArrayList<Integer>>(V);
+		this.V = V;
+		for(int i=0;i< V;i++) {
+			list.add(new ArrayList<Integer>());
+		}
+	}
+	
+	public void topologicalSort() {
+		// TODO Auto-generated method stub
+		
+		boolean[] visited = new boolean[V];
+		Stack<Integer> stack = new Stack<Integer>();
+		
+		for(int i=0;i< V;i++) {
+			if(!visited[i]) {			
+				topologicalSortRec(list, list.get(i), stack, visited, i);
+			}
+		}
+		
+		while(!stack.isEmpty()) {
+			System.out.print(stack.pop()+ " ");
+		}
+		
+	}
+
+	private void topologicalSortRec(ArrayList<ArrayList<Integer>> list2, ArrayList<Integer> arrayList, Stack<Integer> stack, boolean[] visited, int i2) {
+		// TODO Auto-generated method stub
+	
+		for(int i=0;i< arrayList.size();i++) {
+			
+			if(!visited[arrayList.get(i)]) {
+				topologicalSortRec(list2, list2.get(arrayList.get(i)), stack, visited, arrayList.get(i));
+			}
+		}
+
+		stack.push(i2);
+		visited[i2] = true;
+	}
+
+	public void addEdge(int u, int v) {
+		list.get(u).add(v);
+	}
+	
+	
+}
