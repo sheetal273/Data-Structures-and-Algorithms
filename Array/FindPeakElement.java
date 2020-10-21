@@ -7,7 +7,6 @@ public class PeakElement {
 		int[] array = {310, 200, 150, 2, 23, 90, 120};
 		
 		System.out.println("Found Peak Element :" + peakElement(array));
-		System.out.println("Found Peak Element : " + peakElement(array, 0, array.length));
 	}
 
 	private static int peakElement(int[] array) {
@@ -35,36 +34,31 @@ public class PeakElement {
 		return -1;
 	}
 	
-	private static int peakElement(int[] array, int start, int end) {
+	private static int peakElementWithBinarySearch(int[] array) {
 		
-		int mid = (start + end)/2;
-		
-		if(mid-1 >= 0 && mid+1 < array.length) {
-			
-			if(array[mid] > array[mid-1] && array[mid] > array[mid+1]) {
-				return array[mid];
-			}
-			else if(array[mid-1] > array[mid+1]) {
-				return peakElement(array, start, mid-1);
-			}else {
-				return peakElement(array, mid+1, end);
-			}
-		}
-		
-		// if Mid == n-1 then there is no element at right to check
-		if(mid == array.length-1) {
-			if(array[mid-1] < array[mid]) {
-				return array[mid];
-			}
-		}
-		
-		// If Mid == 0 then there is no element at left
-		if(mid == 0) {
-			if(array[mid] > array[mid+1]) {
-				return array[mid];
-			}
-		}
-		return -1;
+		return findPeakUtil(array, 0, array.length);
 	}
+	
+	
+	private static int findPeakUtil(int[] array, int start, int end) {
+		
+		int mid = start + (end- start)/2;
+		
+
+		// if Mid == n-1 then there is no element at right to check
+		// If Mid == 0 then there is no element at left
+		if((mid == 0 || array[mid-1] <= array[mid]) 
+				&& (mid == array.length-1 || array[mid] >= array[mid+1] )) {
+				return mid;
+		}
+		else if(mid > 0 && array[mid] < array[mid-1]) {
+				return findPeakUtil(array, start, mid-1);
+		}
+		else {
+			return findPeakUtil(array, mid+1, end);
+		}
+		
+	}
+	
 	
 }
