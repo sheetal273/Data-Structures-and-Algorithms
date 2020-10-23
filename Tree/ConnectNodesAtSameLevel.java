@@ -37,7 +37,7 @@ public class ConnectNodesAtSameLevel {
 			
 				
 			      	if(i > 0) {
-			      		prev.nextRight = prev;
+			      		prev.nextRight = node;
 			      	}
 			
 			
