@@ -1,13 +1,14 @@
+
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class ConnectNodesAtSameLevel {
+public class LevelOrderTraversal {
 
 	Node root;
 	
 	public static void main(String[] args) {
 		
-	ConnectNodesAtSameLevel tree = new ConnectNodesAtSameLevel();
+	LevelOrderTraversal tree = new LevelOrderTraversal();
 	
 	tree.root = new Node(1);
 	tree.root.left = new Node(2);
@@ -15,13 +16,13 @@ public class ConnectNodesAtSameLevel {
 	
 	tree.root.left.left = new Node(4);
 	
-	LevelOrderTraversal(tree.root);
+	LevelOrderTraversalOfTree(tree.root);
 		
 	}
 
 
 
-	public static void LevelOrderTraversal(Node root) {
+	public static void LevelOrderTraversalOfTree(Node root) {
 		
 		Queue<Node> queue = new LinkedList<Node>();
 		queue.add(root);
@@ -56,4 +57,3 @@ class Node{
         nextRight = null;
     }
 }
-
