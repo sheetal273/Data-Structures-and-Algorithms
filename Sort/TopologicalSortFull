@@ -73,6 +73,8 @@ class Graph{
 	private void topologicalSortRec(ArrayList<ArrayList<Integer>> list2, ArrayList<Integer> arrayList, Stack<Integer> stack, boolean[] visited, int i2) {
 		// TODO Auto-generated method stub
 	
+	
+		visited[i2] = true;
 		for(int i=0;i< arrayList.size();i++) {
 			
 			if(!visited[arrayList.get(i)]) {
@@ -81,7 +83,6 @@ class Graph{
 		}
 
 		stack.push(i2);
-		visited[i2] = true;
 	}
 
 	public void addEdge(int u, int v) {
