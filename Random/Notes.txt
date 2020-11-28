@@ -1,3 +1,9 @@
 Lowercase alphabets 'a' - 'z' => ASCII values are b/w 97 -122
 Uppercase alphabets 'A' - 'Z' => ASCII values are b/w 65- 90
 
+
+char character = 'a';    
+int ascii = (int) character;
+
+int acii = 65;
+char c = (char) ascii;
