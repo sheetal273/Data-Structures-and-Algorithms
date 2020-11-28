@@ -1,0 +1,3 @@
+Lowercase alphabets 'a' - 'z' => ASCII values are b/w 97 -122
+Uppercase alphabets 'A' - 'Z' => ASCII values are b/w 65- 90
+
