@@ -33,7 +33,7 @@ public class CurrencyExchange {
 
 		for(int i=0;i< denominations.length;i++) {
 
-			boolean ans = canGetExactChangeHelper(targetMoney, denominations, remaining - denominations[i], false, map, i, denominations[i]);
+			boolean ans = canGetExactChangeHelper(targetMoney, denominations, remaining - denominations[i], false);
 			 result =  result || ans;
 			}
 		
