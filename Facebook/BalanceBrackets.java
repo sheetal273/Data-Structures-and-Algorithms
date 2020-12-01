@@ -51,7 +51,9 @@ class Main {
 				}
 			}
 		}
-		
+		if(!stack.isEmpty()) {
+			return false;
+		}
 		return true;
   }
 
