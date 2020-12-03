@@ -1,5 +1,6 @@
 class Solution {
     public int minimumEffortPath(int[][] heights) {
+	    
         
         		if(heights.length > 0) {
 		
