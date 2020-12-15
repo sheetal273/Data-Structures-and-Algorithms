@@ -1,74 +1,24 @@
 class Solution {
     public int eraseOverlapIntervals(int[][] intervals) {
-        
-        if(intervals.length < 1){
-            return 0;
-        }
-        ArrayList<Interval> intervalList = new ArrayList<Interval>();
-		
-		for(int i =0;i< intervals.length;i++) {
-			
-			int start = intervals[i][0];
-			int finish = intervals[i][1];
-			Interval interval = new Interval(start, finish);
-			intervalList.add(interval);
-			
+      	if(intervals == null || intervals.length == 0 ) {
+			return 0;
 		}
-        
-        
-        return eraseOverlapIntervals1(intervalList);
+		
+		Arrays.sort(intervals, (i1, i2)-> Integer.valueOf(i1[1]).compareTo(i2[1]));
+		
+		int prev = intervals[0][1];
+		int count =0;
+		for(int i=1;i< intervals.length;i++) {
+			
+			if(prev > intervals[i][0]) {
+				count++;
+			}else {
+				prev = intervals[i][1];
+			}
+		}
+       
+    return count;
+    }
     }
     
-    public static int eraseOverlapIntervals1(ArrayList<Interval> intervalList) {
-      int count = 0;
-		
-        
-        
-		Collections.sort(intervalList);
-		
-		for(Interval interval : intervalList) {
-			
-			System.out.println("start = " + interval.start + " finish : "+ interval.finish);
-		}
-		
-        
-		int prev = intervalList.get(0).finish;
-		for(int i=1;i< intervalList.size();i++) {
-			
-			if(prev > intervalList.get(i).start) {
-				count++;
-			}
-			else {
-				prev = intervalList.get(i).finish;
-			}
-			
-		}
-		
-		return count;
-			}
-		
-    
-    
-    class Interval implements Comparable<Interval>
-{
-	
-	int start;
-	int finish;
-	
-	Interval(int start, int finish){
-		
-		this.start = start;
-		this.finish = finish;
-	}
-	
-	public int compareTo(Interval compareFruit) {
-	    
-        int compareQuantity = ((Interval) compareFruit).finish; 
-        
-        //ascending order
-        return this.finish - compareQuantity;
-        
-    }	
-}
-
-}
+   
