@@ -1,0 +1,29 @@
+ public static long[] nextLargerElement(long[] hist, int n) { 
+        // Your code here
+          
+          Stack<Long> stack = new Stack<Long>();
+		  long[] result = new long[n+1];
+		  int k = 0;
+		  stack.add(hist[0]);
+		  for(int i=1;i<hist.length;i++) {
+			  
+			
+			  if(!stack.isEmpty() && stack.peek() < hist[i]) {
+				  result[k++] = hist[i];
+			//	  System.out.println("Greater of "+ stack.pop() + " is "+ hist[i]);
+			      stack.pop();
+				  stack.push(hist[i]);
+			  }else{
+				  stack.push(hist[i]);
+			  }
+			  
+			  
+		  }
+		  
+		  while(!stack.isEmpty()) {
+		//	  System.out.println(" = > "+ stack.pop());
+			  result[k++] = -1;
+		  }
+		  return result;
+    } 
+}
