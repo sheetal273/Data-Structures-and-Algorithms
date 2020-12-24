@@ -1,0 +1,59 @@
+class Solution {
+    public int largestRectangleArea(int[] hist) {
+        
+         int[] smallestFromLeft = smallestFromLeftArray(hist);
+		  int[] smallestFromRight = smallestFromRightArray(hist);
+         if(hist.length == 1) {
+			  return hist[0];
+		  }
+		  if(hist.length == 0) {
+			  return 0;
+		  }
+		  int max_area = hist.length > 0 ? Integer.MIN_VALUE : 0;
+		  
+		 
+		  for(int i=0;i< hist.length;i++) {
+			  
+			  max_area = Math.max(max_area, hist[i]*(smallestFromRight[i] - smallestFromLeft[i]-1));
+		  }
+		  return max_area;
+    }
+    
+    private static int[] smallestFromRightArray(int[] hist) {
+		// TODO Auto-generated method stub
+		
+		 Stack<Integer> stack = new Stack<Integer>();
+		 int[] result= new int[hist.length];
+		  
+		 for(int i=hist.length-1;i >=0; i--) {
+			 
+			 	while(!stack.isEmpty() && hist[i] <= hist[stack.peek()]) {
+					 stack.pop();
+				 }	 
+			 
+			 result[i] = stack.isEmpty() ? hist.length : stack.peek();
+			 stack.push(i);
+		 }
+		 
+		return result;
+	}
+
+	private static int[] smallestFromLeftArray(int hist[]) {
+		// TODO Auto-generated method stub
+		
+		  Stack<Integer> stack = new Stack<Integer>();
+		  int[] result= new int[hist.length];
+		  
+		  for(int i=0;i< hist.length;i++) {
+			  
+			  while(!stack.isEmpty() && hist[stack.peek()] >= hist[i]) {
+				  stack.pop();
+			  }
+			  result[i] = stack.isEmpty() ? -1 : stack.peek();
+			  stack.push(i);
+		  }
+		  
+		return result;
+	}
+
+}
