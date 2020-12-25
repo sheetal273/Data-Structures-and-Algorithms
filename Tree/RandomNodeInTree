@@ -1,0 +1,21 @@
+	public int getRandomNode(TNode root) {
+	
+		int count = (int) Math.random() * (root.size + 1);
+		
+		return randomNodeUtil(root, count);
+	}
+	
+	
+	 private int randomNodeUtil(TNode root, int count) {
+		// TODO Auto-generated method stub
+		 if(root == null) {
+			return 0;
+		 }
+		 if(count < root.left.size) {
+			 return randomNodeUtil(root.left, count);
+		 }else if(count == root.size) {
+			 return root.val;
+		 }else {
+			 return randomNodeUtil(root.right, count - root.left.size-1);
+		 }
+	}
