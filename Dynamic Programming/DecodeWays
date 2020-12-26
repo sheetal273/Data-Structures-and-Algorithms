@@ -1,0 +1,58 @@
+class Solution {
+    
+    
+     public int numDecodings(String s) {
+        
+         int mem[] = new int[s.length()+1];
+         Arrays.fill(mem, -1);
+         mem[0] = 1;
+         mem[1] = 1;
+         
+         return numDecodings(s, s.length(), mem);
+     }
+    public int numDecodings(String s, int n, int[] mem) {
+     
+         if(s.charAt(0) == '0'){
+            return 0;
+        }
+        for(int i =2;i<= n;i++){
+            
+            mem[i] = 0;
+            
+            if(s.charAt(n-1) > '0'){
+                mem[i] = mem[i-1];
+            }
+            
+            if(s.charAt(n-2) == '1' || (s.charAt(n-2) == '2') && s.charAt(n-1) < '7'){
+            mem[i] +=mem[i-2];
+        }
+       
+            
+        }
+        
+        return mem[n];
+    /*    if(n == 0 || (n == 1 && s.charAt(0) != '0')){
+            return 1;
+        }
+        
+        
+        if(s.charAt(0) == '0'){
+            return 0;
+        }
+        
+        int count = 0;
+        
+        if(s.charAt(n-1) > '0'){
+            
+            count[i] = count[i-1];
+           //count =  numDecodings(s.substring(0, n-1), n-1);
+        }
+        
+        if(s.charAt(n-2) == '1' || (s.charAt(n-2) == '2') && s.charAt(n-1) < '7'){
+            count += numDecodings(s.substring(0, n-2), n-2);
+        }
+       
+        return count;
+        */
+    }
+}
