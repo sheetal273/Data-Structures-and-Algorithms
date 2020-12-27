@@ -1,0 +1,32 @@
+class Solution {
+    public int minDistance(String word1, String word2) {
+        return diffBetweenTwoStrings(word1, word2, 0, 0);
+    }
+    
+    static int diffBetweenTwoStrings(String source, String target, int m, int n) {
+		// your code goes here
+    
+   
+    if(source.length() == m){
+        return target.length()-n;
+    }
+       
+    if(target.length() == n){
+        return source.length()-m;
+    }
+       
+        
+    if(source.charAt(m) == target.charAt(n)) 
+    {
+        return diffBetweenTwoStrings(source, target, m+1, n+1);
+    }
+    
+    if(source.charAt(m)!= target.charAt(n))
+    {        
+        return 1+ Math.min(
+            Math.min(diffBetweenTwoStrings(source, target, m+1, n),diffBetweenTwoStrings(source, target, m, n+1)),
+        diffBetweenTwoStrings(source, target, m+1, n+1));
+    }
+    return 0;
+	}
+}
