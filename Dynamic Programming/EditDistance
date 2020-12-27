@@ -3,6 +3,36 @@ class Solution {
         return diffBetweenTwoStrings(word1, word2, 0, 0);
     }
     
+       static int diffBetweenTwoStringsOptimized(String source, String target) {
+		// your code goes here
+    
+    int m = source.length();
+    int n = target.length();
+         
+    int[][] memo = new int[m+1][n+1];         
+
+    for(int i=0;i<= m;i++){
+        for(int j =0;j<= n;j++){
+            
+            if(i == 0){
+                memo[i][j] = j;
+            }
+            else if(j == 0){
+                memo[i][j] = i;
+            }
+            
+            else if(source.charAt(i-1) != target.charAt(j-1)){
+                memo[i][j] = 1 + Math.min(Math.min(memo[i-1][j], memo[i][j-1]), memo[i-1][j-1]);
+            }else{
+                memo[i][j] = memo[i-1][j-1];
+            }
+            
+        }
+    }
+
+    return memo[m][n];
+	}
+	
     static int diffBetweenTwoStrings(String source, String target, int m, int n) {
 		// your code goes here
     
