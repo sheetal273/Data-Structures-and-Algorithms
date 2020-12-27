@@ -1,0 +1,25 @@
+class Solution {
+    static List<List<Integer>> subsets = new ArrayList<List<Integer>>();
+    
+    public List<List<Integer>> subsets(int[] nums) {
+        subsets.clear();
+        return subsets(nums, 0, new ArrayList<Integer>());
+    }
+    
+    public List<List<Integer>> subsets(int[] nums, int index, ArrayList<Integer> list) {
+    
+        if(index == nums.length){
+           subsets.add(list);
+          //  System.out.println(curr);
+            return subsets;
+        }
+        ArrayList<Integer> prev = new ArrayList<Integer>();
+        prev = (ArrayList) list.clone();
+        list.add(nums[index]);
+        
+        subsets(nums, index+1, list);
+        subsets(nums, index+1, prev);
+    
+        return subsets;
+    }
+}
