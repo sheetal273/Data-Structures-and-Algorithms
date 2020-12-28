@@ -1,0 +1,32 @@
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        
+        List<List<Integer>> list = new ArrayList<List<Integer>>();
+        boolean[] used = new boolean[nums.length];
+        permute(nums, list, new ArrayList<Integer>());
+        return list;
+    }
+    
+     public void permute(int[] nums, List<List<Integer>> list, List<Integer> permutations) {
+        
+         if(permutations.size() == nums.length){
+             
+             list.add(new ArrayList<>(permutations));
+             return;
+         }
+         
+         for(int i=0;i< nums.length;i++){
+             
+             if(permutations.contains(nums[i])){
+                 continue;
+             }
+             
+             permutations.add(nums[i]);
+             permute(nums, list, permutations);
+             permutations.remove(permutations.size()-1);
+            
+         }
+    }
+    
+    
+}
