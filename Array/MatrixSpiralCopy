@@ -1,0 +1,74 @@
+import java.io.*;
+import java.util.*;
+
+class Solution {
+
+  /*
+                         1,    2,   3,  4,    5],
+                         [6,    7,   8,  9,   10],
+                         [11,  12,  13,  14,  15],
+                         [16,  17,  18,  19,  20] 
+                             
+      toprow = 0
+      lastcol = n-1
+      lastrow = m-1
+      firstcol = 0
+      
+ 
+  */
+  
+  static int[] spiralCopy(int[][] matrix) {
+    // your code goes here
+    
+    int rows = matrix.length;
+    int cols = matrix[0].length;
+    
+    
+    int res[] = new int[rows*cols];
+    int top_row = 0;
+    int last_col = cols-1;
+    int last_row = rows-1;
+    int first_col = 0;
+    int k=0;
+    
+    while(top_row <= last_row && first_col <= last_col){
+      
+      // first row
+      for(int i=first_col;i<= last_col; i++){
+        res[k++] = matrix[top_row][i];
+      }
+      
+      top_row++;
+      
+      for(int i=top_row;i<= last_row; i++){
+        res[k++] = matrix[i][last_col];
+      }
+      
+      last_col--;
+      if(top_row <= last_row){
+        for(int i=last_col;i>= first_col; i--){
+          res[k++] = matrix[last_row][i];
+        }
+        
+        last_row--;
+      }
+      
+      
+     if(first_col <= last_col){
+         for(int i=last_row; i>=top_row; i--){
+          res[k++] = matrix[i][first_col];
+         }
+        first_col++;
+      }
+     
+      
+    }
+    return res;
+    
+  }
+
+  public static void main(String[] args) {
+
+  }
+
+}
