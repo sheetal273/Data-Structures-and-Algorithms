@@ -1,0 +1,31 @@
+    
+    public List<List<String>> groupAnagrams(String[] str) {
+    
+        if(str == null || str.length == 0){
+            return Collections.EMPTY_LIST;
+        }
+        
+        
+        HashMap<String, List<String>> map = new HashMap<>();
+        List<List<String>> list = new ArrayList<List<String>>();
+     
+        for(String s : str){
+            int[] count = new int[26];
+            char[] c = s.toCharArray();
+            for(int j=0;j< c.length;j++){
+                count[c[j]-'a']++;
+            }
+            
+            StringBuilder sb = new StringBuilder(Arrays.toString(count));
+            String curr = sb.toString();
+            if(!map.containsKey(curr)){
+                  map.put(curr, new ArrayList<String>());
+            }
+              map.get(curr).add(s);
+        }
+        for(List<String> l: map.values()){
+            list.add(l);
+        }
+        return list;
+    }
+    
