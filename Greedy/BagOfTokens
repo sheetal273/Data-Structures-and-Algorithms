@@ -1,0 +1,44 @@
+class Solution {
+    /*
+    tokens = [100,200], P = 150
+    
+    Points: 1 
+    Power: 50
+    
+    1 => Returned Power and bought 200 Power
+    
+    
+    */
+    public int bagOfTokensScore(int[] tokens, int P) {
+     
+        Arrays.sort(tokens);
+        int right = tokens.length-1;
+        int points = 0;
+        
+        int maxPoints = 0;
+        
+        for(int i=0;i<= right;i++){
+            
+            if(P >= tokens[i]){
+                points ++;
+                P -= tokens[i];
+                maxPoints = Math.max(points, maxPoints);
+            }
+            else{
+                boolean success = false;
+                if(i < right && points>0){
+                    
+                    P += tokens[right];
+                    points--;
+                    right--;
+                    success = true;
+                }
+                if(success){
+                   i = i-1;
+                }
+            }
+            
+        }
+        return maxPoints;
+    }
+}
