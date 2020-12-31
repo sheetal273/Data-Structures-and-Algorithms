@@ -1,0 +1,48 @@
+class Solution {
+    /*
+    Input: S = "ababcbacadefegdehijhklij"
+    
+    first_partition = ababcbaca ,   
+    defegde
+    
+    find the last index of each charater picked.
+    find the max index
+    
+    => 
+Output: [9,7,8]
+Explanation:
+The partition is "ababcbaca", "defegde", "hijhklij".
+This is a partition so that each letter appears in at most one part.
+A partition like "ababcbacadefegde", "hijhklij" is incorrect, because it splits S into less parts.
+    
+    
+    */
+    public List<Integer> partitionLabels(String S) {
+        
+        if(S == null || S.length() == 0){
+            return new ArrayList<Integer>();
+        }
+           
+        List<Integer> list = new ArrayList<>();
+        
+        for(int i =0;i < S.length();i++){
+            
+            char ch = S.charAt(i);
+            int lastIndex = S.lastIndexOf(ch);
+
+                for(int l =i+1;l < lastIndex;l++){
+                    
+                    if(S.lastIndexOf(S.charAt(l)) > lastIndex) {
+                        lastIndex = S.lastIndexOf(S.charAt(l));
+                    }
+                }
+            System.out.println(lastIndex -i+1);
+            list.add(lastIndex -i+1);
+            i = lastIndex;
+           
+        }
+        return list;
+    }
+    
+   
+}
