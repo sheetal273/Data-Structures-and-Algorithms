@@ -44,5 +44,31 @@ A partition like "ababcbacadefegde", "hijhklij" is incorrect, because it splits 
         return list;
     }
     
+      public List<Integer> partitionLabelsTimeOptimized(String S) {
+        
+        if(S == null || S.length() == 0){
+            return new ArrayList<Integer>();
+        }
+           
+        
+        List<Integer> list = new ArrayList<>();
+        int start =0;
+        int lastIndex = 0;
+        
+        for(int i =0;i < S.length();i++){
+            
+            char ch = S.charAt(i);
+            lastIndex = Math.max(S.lastIndexOf(ch), lastIndex);
+
+            if(lastIndex == i){
+                 list.add(i-start+1);
+                 start = lastIndex+1;
+                 
+            }
+           
+           
+        }
+        return list;
+    }
    
 }
