@@ -6,6 +6,26 @@ class Solution {
         return subsets(nums, 0, new ArrayList<Integer>());
     }
     
+     public List<List<Integer>> subsetsIterative(int[] nums) {
+        
+        subsets.clear();
+        subsets.add(new ArrayList<Integer>());
+   //     return subsets(nums, 0, new ArrayList<Integer>());
+    
+        for(int i =0;i< nums.length;i++){
+            int size = subsets.size();
+            
+            for(int j=0;j< size;j++){
+                
+                subsets.add(new ArrayList<>(subsets.get(j)));
+                subsets.get(subsets.size()-1).add(nums[i]);
+            }
+            
+        }
+    
+    return subsets;
+    }
+    
     public List<List<Integer>> subsets(int[] nums, int index, ArrayList<Integer> list) {
     
         if(index == nums.length){
