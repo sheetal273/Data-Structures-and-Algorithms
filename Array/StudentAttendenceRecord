@@ -1,0 +1,39 @@
+class Solution {
+    /*
+    
+    Absent allowed  <=1 
+    2 continuous late allowed.
+    
+    PPALLP
+    
+    A -
+    L -
+    
+    */
+    public boolean checkRecord(String s) {
+        
+        int acount =0;
+        int lcount=0;
+        //PPALLL
+
+        for(int i=0;i< s.length();i++){
+            
+            
+            if(s.charAt(i) == 'A'){
+                acount++;
+                if(acount > 1){
+                    return false;
+            }
+            }
+            if(s.charAt(i) == 'L'){
+                lcount++;
+                if(i+1 < s.length() && s.charAt(i+1) == 'L' && i+2 < s.length() && s.charAt(i+2) == 'L'){
+                    return false;
+                }
+           
+            }
+        }
+    
+        return true;
+    }
+}
