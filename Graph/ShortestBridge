@@ -1,0 +1,60 @@
+class Solution {
+
+     public int shortestBridge(int[][] A) {
+      
+         ArrayList<Pair> xList = new ArrayList<Pair>();
+         ArrayList<Pair> yList = new ArrayList<Pair>();
+         
+         int count = 0;
+         for(int i=0;i< A.length;i++){
+            for(int j = 0;j< A[0].length;j++){
+                
+                if(A[i][j] == 1){
+                    count ++;
+                    
+                    if(count == 1){
+                        flood_fill(A, i, j, xList);
+                    }
+                    if(count == 2){
+                        flood_fill(A, i, j, yList);
+                    }
+                }    
+            }
+         }
+         
+         int min_dist = Integer.MAX_VALUE;
+          for(int i=0;i< xList.size();i++){
+            for(int j = 0;j< yList.size();j++){
+                
+                int dist = Math.abs(xList.get(i).x - yList.get(j).x) + Math.abs(xList.get(i).y - yList.get(j).y)-1;
+                min_dist = Math.min(dist,min_dist);
+            }
+          }
+         return min_dist;
+     }
+    
+    static void flood_fill(int[][] A, int i, int j, ArrayList<Pair> list){
+        
+         if(i < 0 || i>= A.length || j < 0 || j >= A[0].length || A[i][j] == 0){
+             return;
+         }
+        A[i][j] = 0;
+        list.add(new Pair(i,j));
+        flood_fill(A, i+1, j, list);
+        flood_fill(A, i-1, j, list);
+        flood_fill(A, i, j+1, list);
+        flood_fill(A, i, j-1, list);
+        return;
+    }
+    
+    public static class Pair{
+        int x;
+        int y;
+        
+        Pair(int x, int y){
+            this.x = x;
+            this.y = y;
+        }
+    }
+    
+}
