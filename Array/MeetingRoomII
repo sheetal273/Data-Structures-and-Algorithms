@@ -1,0 +1,36 @@
+/**
+ * Definition of Interval:
+ * public classs Interval {
+ *     int start, end;
+ *     Interval(int start, int end) {
+ *         this.start = start;
+ *         this.end = end;
+ *     }
+ * }
+ */
+
+public class Solution {
+    /**
+     * @param intervals: an array of meeting time intervals
+     * @return: the minimum number of conference rooms required
+     */
+    public int minMeetingRooms(List<Interval> intervals) {
+        // Write your code here
+        
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+     
+        Collections.sort(intervals, (i1,i2)-> i1.start-i2.start);
+       
+        for(Interval interval: intervals){
+            
+            if(!queue.isEmpty() && queue.peek() <= interval.start){
+                queue.poll();
+            }
+             queue.add(interval.end);
+        } 
+         
+         
+  
+        return queue.size();
+    }
+}
