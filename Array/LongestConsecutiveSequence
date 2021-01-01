@@ -1,0 +1,38 @@
+class Solution {
+    
+    /* 
+     [100,4,200,1,3,2]
+     
+     
+    */
+    public int longestConsecutive(int[] nums) {
+        
+        if(nums == null || nums.length == 0){
+            return 0;
+        }
+        
+        HashSet<Integer> set = new HashSet<>();
+        for(int num: nums){
+            set.add(num);
+        }
+        
+        int longest_streak = 0;
+      
+        for(int num: set){
+            
+                if(!set.contains(num-1)){
+                    
+                    int current = 1;
+                    int ncopy = num;
+                
+                    while(set.contains(ncopy+1)){
+                        current++;
+                        ncopy++;
+                    }
+                    longest_streak = Math.max(current, longest_streak);
+                }
+            
+        }
+        return longest_streak;
+    }
+}
