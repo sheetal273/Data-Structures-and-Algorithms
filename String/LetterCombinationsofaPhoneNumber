@@ -1,0 +1,53 @@
+class Solution {
+    /*
+        2 abc
+        3 def
+
+    */
+    
+    
+     private static HashMap<String, String> map = new HashMap<String, String>();
+     
+    public List<String> letterCombinations(String digits) {
+     
+        map.put("2", "abc");
+        map.put("3", "def");
+        map.put("4", "ghi");
+        map.put("5", "jkl");
+        map.put("6", "mno");
+        map.put("7", "pqrs");
+        map.put("8", "tuv");
+        map.put("9", "wxyz");
+        
+        
+        List<String> list = new ArrayList<>();
+         if(digits == null || digits.length() == 0){
+            return list;
+        }
+        
+        helper(digits, 0, "", list);
+        
+        return list;
+    }
+    
+    static void helper(String digits, int index, String combination, List<String> list){
+       
+        if(index == digits.length()){
+            list.add(combination);
+            return;
+        }
+        for(char ch: map.get(""+digits.charAt(index)).toCharArray()){
+            
+            helper(digits, index+1, combination + ch, list);
+        }
+        
+     
+    }
+    
+}
+
+
+
+
+
+
