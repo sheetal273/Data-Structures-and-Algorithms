@@ -1,0 +1,21 @@
+class Solution {
+
+
+    public int addDigits(int num) {
+        
+        int digits = 0;
+        
+        while(num > 0){
+            
+            digits += num %10;
+            num = num / 10;
+            
+            if(num == 0 && digits > 9){
+                num = digits;
+                digits = 0;
+            }
+            
+        }
+        return digits;
+    }
+}
