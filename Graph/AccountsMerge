@@ -1,0 +1,82 @@
+class Solution {
+    public List<List<String>> accountsMerge(List<List<String>> accounts) {
+        
+        Map<String, Set<String>> g = new HashMap<>();
+        Map<String, String> emailToName = new HashMap<>();
+        buildGraph(accounts, g, emailToName);
+        
+        List<List<String>> res = new ArrayList<>();
+        Set<String> visited = new HashSet<>();
+        
+        for(String email: emailToName.keySet()){
+            
+            if(visited.add(email)){
+                List<String> list = new ArrayList<>();
+                list.add(email);
+                dfs(g, visited, list, email);
+                Collections.sort(list);
+                list.add(0, emailToName.get(email));
+                res.add(list);
+            }
+        }
+        return res;
+    }
+    
+    private void buildGraph(List<List<String>> accounts, Map<String, Set<String>> g, 
+            Map<String,String> emailToName){
+        
+        for(List<String> a: accounts){
+            
+            String name = a.get(0);
+            
+            for(int i =1;i< a.size();i++){
+                String email = a.get(i);
+                emailToName.put(email, name);
+                
+                g.putIfAbsent(email, new  HashSet<>());
+           
+                if(i == 1) continue;
+                
+                String prev = a.get(i-1);
+                g.get(prev).add(email);
+                g.get(email).add(prev);
+            }
+        }
+        
+    }
+    
+    private void dfs(Map<String, Set<String>> g, Set<String> visited, List<String> list,
+                    String email){
+        
+        if(g.get(email) == null || g.get(email).size() == 0){
+            return;
+        }
+        
+        for(String neigh: g.get(email)){
+            
+            if(visited.add(neigh)){
+                list.add(neigh);
+                dfs(g, visited,list, neigh);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
