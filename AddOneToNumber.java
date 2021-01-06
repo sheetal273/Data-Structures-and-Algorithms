@@ -1,10 +1,6 @@
 
 public class AddOneToNumber {
 
-	AddOneToNumber(){
-		
-	}
-	
 	public int[] plusOne(int[] A) {
 		
 		int result[] = new int[A.length + 1];
