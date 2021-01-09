@@ -1,0 +1,37 @@
+class Solution {
+    /*
+    
+    => 2736
+    => 7236
+    
+    2 * 1000 
+    7 * 10
+    3 * 100
+    6 * 1
+    
+    
+    
+    */
+    public int maximumSwap(int num) {
+     
+        char[] nums = String.valueOf(num).toCharArray();
+        int[] digit = new int[10];
+        
+        for(int i=0;i< nums.length;i++){
+            digit[nums[i]-'0'] = i;
+        }
+        for(int j=0;j< nums.length;j++){
+            
+            for(int i=9;i > nums[j]-'0';i--){
+                
+                if(digit[i] > j){
+                    char temp = nums[j];
+                    nums[j] = nums[digit[i]];
+                    nums[digit[i]] = temp;
+                    return Integer.valueOf(String.valueOf(nums));
+                }
+            }
+        }
+        return num;
+    }
+}
