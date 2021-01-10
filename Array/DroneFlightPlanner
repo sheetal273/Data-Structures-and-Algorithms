@@ -1,0 +1,28 @@
+ static int calcDroneMinEnergy(int[][] route) {
+    // your code goes here
+    
+    int min_energy = 0;
+    int prev = route[0][2];
+    int energy_left = 0;
+    for(int i=1;i< route.length;i++) {
+      
+      int curr = route[i][2]; // curr 6, 15 , 8
+      
+        int diff = prev - curr; // 10- 0 // -6 // -9 // 7
+
+      
+        if((energy_left + diff) <= 0) {  // 4-9 =-5
+          min_energy += Math.abs(energy_left+diff); // 0 + 5 = 5
+          energy_left = 0;
+        }else{
+          energy_left += diff; // 10-6 = 4 // 0+ 7 = 7
+        }
+       //   System.out.println("Row : "+ i + " diff = "+ diff + " energy_left : "+ energy_left + " min : "+ min_energy);
+      
+        prev = curr; // 0, 6, 15 
+      }
+      
+ 
+    
+    return min_energy;
+  }
