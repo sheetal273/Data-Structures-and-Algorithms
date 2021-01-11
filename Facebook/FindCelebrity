@@ -1,0 +1,21 @@
+ public int findCelebrity(int n) {
+        // Write your code here
+        
+        int potential_celebrity = 0;
+        for(int i=1;i<n;i++){
+            if(knows(potential_celebrity, i)){
+                potential_celebrity = i;
+            }
+        }
+        System.out.println("candidate : "+ potential_celebrity);
+        for(int i=0;i<n;i++){
+            
+            if(i!= potential_celebrity){
+                if(knows(potential_celebrity, i) || !knows(i, potential_celebrity)){
+               
+                    return -1;
+                }
+            }
+        }
+        return potential_celebrity;
+    }
