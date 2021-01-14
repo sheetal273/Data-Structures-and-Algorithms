@@ -1,0 +1,66 @@
+class Solution {
+    
+    public static boolean result = true;
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        
+        result = true;
+        Graph g= new Graph(numCourses);
+        buildGraph(g, prerequisites);
+        
+        boolean[] visited = new boolean[g.V];
+        
+        for(int i=0;i< g.V;i++){
+            
+          
+                if(!helper(visited, g, g.list.get(i), i)){
+                    return false;
+                }
+            
+        }
+        return true;
+    }
+    
+    public static boolean helper(boolean[] visited, Graph g, ArrayList<Integer> list, int curr){
+       
+    visited[curr] = true;
+        for(int i=0;i< list.size();i++){
+           
+            if(visited[list.get(i)])
+             {
+                return false;
+             }
+            else{
+         ////       visited[list.get(i)] = true;
+                
+                if(!helper(visited, g, g.list.get(list.get(i)), list.get(i))){
+                    return false;
+                }
+            }
+        }
+        visited[curr] = false;
+        System.out.println("reverted flag for" + curr);
+        return true;
+    }
+    
+    static void buildGraph(Graph g, int[][] prerequisites){
+    
+        for(int[] preq: prerequisites){
+             g.list.get(preq[0]).add(preq[1]);    
+        }
+    }
+    
+    
+    
+  class Graph{
+      
+      int V;
+      ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+      
+      Graph(int V){
+          this.V = V;
+          for(int i=0;i< V;i++){
+              list.add(new ArrayList<Integer>());
+          }
+      }
+  }
+}
