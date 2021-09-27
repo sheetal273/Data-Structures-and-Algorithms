@@ -4,14 +4,7 @@ public class DutchNationalFlag {
 	public static void main(String[] args) {
 		
 		int[] arr = {2, 0, 0, 1, 2, 1};
-		/*
-		 * start = 0, end = 5, mid = 2
-		 * mid =0 , ex 0 0 2 1 2 1
-		 * 0 0 1 1 2 2
-		 * 0 0 2 1 2 1 swap arr[2] with arr[0]
-		 * start = 1 end = 5, mid = 3
-		 * 
-		 */
+		
 		dutchNationalFlag(arr);
 		for(int i=0;i< arr.length;i++) {
 			System.out.println(" " + arr[i]);
